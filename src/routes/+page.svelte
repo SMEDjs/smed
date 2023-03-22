@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	console.log('test');
+	console.log('flop');
+</script>
+
+<h1>SMED</h1>
+<p>A motivated AND HUGE HUGE HUGE HUGE developer</p>
