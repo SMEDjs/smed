@@ -3,21 +3,21 @@
 @tailwind utilities;
 
 body {
-    font-family: 'Josefin Sans', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
 }
 .france {
-    background: url(https://cdn.glitch.com/3a6d1951-fdbb-451d-baef-d20e383a7369%2Fflag-france_1f1eb-1f1f7.png?v=1618219963031);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+	background: url(https://cdn.glitch.com/3a6d1951-fdbb-451d-baef-d20e383a7369%2Fflag-france_1f1eb-1f1f7.png?v=1618219963031);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
 }
 
 .avatar {
-    background-image: url(https://cdn.glitch.com/3a6d1951-fdbb-451d-baef-d20e383a7369%2F5aeb122d5328f2d2aca2af981a28c4cf.png?v=1618159671735);
-    border-radius: 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+	background-image: url(https://cdn.glitch.com/3a6d1951-fdbb-451d-baef-d20e383a7369%2F5aeb122d5328f2d2aca2af981a28c4cf.png?v=1618159671735);
+	border-radius: 50%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
