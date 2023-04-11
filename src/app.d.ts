@@ -1,4 +1,4 @@
-import type { PrismaClient } from "@prisma/client";
+import type { PrismaClient } from '@prisma/client';
 
 declare global {
 	namespace App {
@@ -7,7 +7,7 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
-	let prisma: PrismaClient
+	let prisma: PrismaClient;
 }
 
 export {};

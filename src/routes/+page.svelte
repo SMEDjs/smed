@@ -5,15 +5,15 @@
 	import type { PageData } from './$types';
 	export let data: PageData;
 	const { id, createdAt, description, discordId, fileName, height, size, url, width } = data;
-	console.log(data)
+	console.log(data);
 </script>
 
 <svelte:head>
 	<title>{description}</title>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={`https://smed.wtf/`} />
-	<meta property="og:title" content={description ?? "Image Uploader"} />
-	<meta property="og:image" content={url ?? ""} />
+	<meta property="og:title" content={description ?? 'Image Uploader'} />
+	<meta property="og:image" content={url ?? ''} />
 </svelte:head>
 
 {#if !id}
@@ -39,7 +39,7 @@
 	<div class="flex items-center flex-col">
 		<div class="text-4xl my-4">{description}</div>
 		<div class="w-[90%] lg:w-[40%] flex justify-center">
-			<img class="w-full h-full shadow-2xl rounded-lg" src={url} alt={description}>
+			<img class="w-full h-full shadow-2xl rounded-lg" src={url} alt={description} />
 		</div>
 	</div>
 {/if}
