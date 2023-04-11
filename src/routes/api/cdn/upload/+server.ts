@@ -5,7 +5,7 @@ import { prisma } from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
 import { WebhookClient } from 'discord.js';
 
-export const POST = (async ({ request }) => {
+export const POST = (async ({ request: RequestHandler }) => {
 	try {
 		const data = await request.formData();
 		const description = data.get('description')?.toString();
@@ -40,7 +40,7 @@ export const POST = (async ({ request }) => {
 				fileName: image.name
 			}
 		});
-		const imgUrl = `https://smed.wtf/api/host/${createdImg.id}`;
+		const imgUrl = `https://smed.wtf/api/cdn/${createdImg.id}`;
 		return json({
 			error: false,
 			message: `Uploaded successfully, you can view your image at https://${createdImg.id}.smed.wtf/`,

@@ -10,11 +10,13 @@
 
 <svelte:head>
 	<title>{description}</title>
-	<meta property="og:site_name" content="SMED Image Hoster" />
+	<meta property="og:site_name" content="SMED's CDN" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={`https://smed.wtf/`} />
 	<meta property="og:title" content={description ?? 'SMED Website / CDN'} />
 	<meta property="og:image" content={url ?? 'https://smed.wtf/favicon.png'} />
+	<meta name="theme-color" content="#ffbb00" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<link type="application/json+oembed" href="/oembed.json" />
 </svelte:head>
 

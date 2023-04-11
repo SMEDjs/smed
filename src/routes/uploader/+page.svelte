@@ -36,7 +36,7 @@
 <div>
 	<form
 		method="POST"
-		action="/api/host/upload"
+		action="/api/cdn/upload"
 		enctype="multipart/form-data"
 		on:submit|preventDefault={submit}
 		bind:this={form}
