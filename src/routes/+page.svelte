@@ -6,18 +6,40 @@
 	const { id, createdAt, description, discordId, fileName, height, size, url, width } = data;
 	import RelativeTime from '@yaireo/relative-time';
 	const relativeTime = new RelativeTime();
+	const SEO = {
+		name: "SMED's CDN",
+		imgLink: `https://${id}.smed.wtf/`,
+		imgDescription: description ?? 'SMED Website / CDN',
+		description: `${width}x${height} - ${relativeTime.from(createdAt)}`,
+		imgUrl: url ?? 'https://smed.wtf/favicon.png',
+		color: '#FFBB00',
+		keywords: 'smed,cdn,image,hosting'
+	};
 </script>
 
 <svelte:head>
 	<title>{description}</title>
-	<meta property="og:site_name" content="SMED's CDN" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content={`https://smed.wtf/`} />
-	<meta property="og:title" content={description ?? 'SMED Website / CDN'} />
-	<meta property="og:image" content={url ?? 'https://smed.wtf/favicon.png'} />
-	<meta name="theme-color" content="#ffbb00" />
-	<meta name="twitter:card" content="summary_large_image" />
 	<link type="application/json+oembed" href="/oembed.json" />
+	<meta property="og:site_name" content={SEO.name} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={SEO.imgLink} />
+	<meta property="og:title" content={SEO.imgDescription} />
+	<meta property="og:image" content={SEO.imgUrl} />
+	<meta name="theme-color" content={SEO.color} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=0.5, maximum-scale=2.0, shrink-to-fit=no"
+	/>
+	<meta name="MobileOptimized" content="width" />
+	<link rel="icon" href="/assets/favicon.ico" />
+	<meta name="keywords" content={SEO.keywords} />
+	<meta name="description" content={SEO.description} />
+	<meta property="twitter:description" content={SEO.description} />
+	<meta data-react-helmet="true" property="og:description" content={SEO.description} />
+	<meta itemprop="name" content={SEO.name} />
+	<meta itemprop="description" content={SEO.description} />
+	<meta itemprop="image" content={SEO.imgUrl} />
 </svelte:head>
 
 {#if !id}

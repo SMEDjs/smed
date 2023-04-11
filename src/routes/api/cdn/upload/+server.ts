@@ -5,7 +5,7 @@ import { prisma } from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
 import { WebhookClient } from 'discord.js';
 
-export const POST = (async ({ request: RequestHandler }) => {
+export const POST = (async ({ request }) => {
 	try {
 		const data = await request.formData();
 		const description = data.get('description')?.toString();

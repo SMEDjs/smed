@@ -5,11 +5,14 @@
 	let image: HTMLImageElement;
 	let showImage = false;
 	let response: any;
+	let loading: boolean = false;
 
 	const submit = async (e: any) => {
 		try {
+			loading = true;
 			const body = new FormData(form);
 			const res = await fetch(form.action, { method: form.method, body }).then((res) => res.json());
+			loading = false;
 			response = res;
 			if (!res.error) form.reset();
 		} catch (err) {
@@ -68,7 +71,8 @@
 				<button
 					type="submit"
 					class="btn btn-primary mb-10 text-xl bg-primary py-2 px-4 rounded-lg"
-					on:submit|preventDefault>Upload</button
+					disabled={loading}
+					on:submit|preventDefault>{loading ? 'Loading...' : 'Upload'}</button
 				>
 			</div>
 			<div bind:this={container} class="w-96 h-96 flex items-center">
@@ -83,7 +87,7 @@
 			</div>
 		</fieldset>
 	</form>
-	<div class="my-6">
+	<div class="my-6 flex justify-center">
 		{#if response}
 			<div>{response?.message}</div>
 		{/if}
