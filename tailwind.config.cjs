@@ -14,6 +14,9 @@ const config = {
 			secondary: {
 				DEFAULT: '#ffffff',
 				light: '#9EAAB7'
+			},
+			dark: {
+				DEFAULT: '#000000'
 			}
 		},
 		extend: {}

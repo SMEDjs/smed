@@ -4,10 +4,7 @@ import { error, json } from '@sveltejs/kit';
 import { prisma } from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
 import { WebhookClient } from 'discord.js';
-export const _info: object = {
-	type: 'POST',
-	description: 'Send a webhook'
-};
+
 export const POST = (async ({ request }) => {
 	try {
 		const data = await request.formData();
@@ -32,7 +29,7 @@ export const POST = (async ({ request }) => {
 			]
 		});
 		const { id, url, width, height, size } = webhook.attachments[0];
-		await prisma.image.create({
+		const createdImg = await prisma.image.create({
 			data: {
 				discordId: id,
 				url,
@@ -43,7 +40,16 @@ export const POST = (async ({ request }) => {
 				fileName: image.name
 			}
 		});
-		return json({ error: false, id, url, width, height, size });
+		const imgUrl = `https://smed.wtf/api/host/${createdImg.id}`;
+		return json({
+			error: false,
+			message: `Uploaded successfully, you can view your image at https://${createdImg.id}.smed.wtf/`,
+			id,
+			url: imgUrl,
+			width,
+			height,
+			size
+		});
 	} catch (err) {
 		console.log(err);
 		throw error(400, 'Something wrong happend');

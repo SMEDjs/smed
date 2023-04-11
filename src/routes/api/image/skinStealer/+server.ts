@@ -1,10 +1,6 @@
 import { json } from '@sveltejs/kit';
 import Jimp from 'jimp';
-export const _info: object = {
-	type: 'GET',
-	description:
-		'Steals a minecraft skin by modifying a few pixel from an image url, query parameters: link'
-};
+
 export const GET = async ({ url }) => {
 	try {
 		const link = url.searchParams.get('link');

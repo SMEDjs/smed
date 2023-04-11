@@ -1,14 +1,9 @@
-import { loadTranslations, locale } from '$lib/translations/translations';
 import { error } from '@sveltejs/kit';
-import type { LayoutLoad } from './$types';
+import type { LayoutServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
 
-export const load: LayoutLoad = async ({ url }) => {
+export const load: LayoutServerLoad = async ({ url }: { url: URL }) => {
 	const subdomain = url.hostname.split('.')?.[0];
-	console.log(subdomain);
-	const { pathname } = url;
-	const initLocale = locale.get() || 'en';
-	await loadTranslations(initLocale, pathname);
 	if (!subdomain) return {};
 	try {
 		const id = Number(subdomain);
@@ -18,7 +13,6 @@ export const load: LayoutLoad = async ({ url }) => {
 				id
 			}
 		});
-		console.log(image);
 		if (!image) return {};
 		return image;
 	} catch (err) {

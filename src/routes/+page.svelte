@@ -1,19 +1,21 @@
 <script lang="ts">
 	import { skills } from '$lib/smed.ts';
-	import { t } from '$lib/translations/translations';
 	import Logo from '$lib/components/Logo.svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
 	const { id, createdAt, description, discordId, fileName, height, size, url, width } = data;
-	console.log(data);
+	import RelativeTime from '@yaireo/relative-time';
+	const relativeTime = new RelativeTime();
 </script>
 
 <svelte:head>
 	<title>{description}</title>
+	<meta property="og:site_name" content="SMED Image Hoster" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content={`https://smed.wtf/`} />
-	<meta property="og:title" content={description ?? 'Image Uploader'} />
-	<meta property="og:image" content={url ?? ''} />
+	<meta property="og:title" content={description ?? 'SMED Website / CDN'} />
+	<meta property="og:image" content={url ?? 'https://smed.wtf/favicon.png'} />
+	<link type="application/json+oembed" href="/oembed.json" />
 </svelte:head>
 
 {#if !id}
@@ -41,5 +43,6 @@
 		<div class="w-[90%] lg:w-[40%] flex justify-center">
 			<img class="w-full h-full shadow-2xl rounded-lg" src={url} alt={description} />
 		</div>
+		<div class="text-secondary mt-4">{width}x{height} - {relativeTime.from(createdAt)}</div>
 	</div>
 {/if}

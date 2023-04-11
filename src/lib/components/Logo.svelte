@@ -6,7 +6,7 @@
 </script>
 
 <svg
-	class="mr-8 p-4 w-16 h-16 opacity-90 hover:opacity-100 duration-200 rounded-full"
+	class="ml-4 mr-4 lg:mr-8 lg:ml-0 mb-4 p-4 w-16 h-16 opacity-90 hover:opacity-100 duration-200 rounded-full"
 	style={`background-color: ${color}1a`}
 	role="img"
 	viewBox="0 0 24 24"

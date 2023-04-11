@@ -1,9 +1,6 @@
 import { json } from '@sveltejs/kit';
 import Jimp from 'jimp';
-export const _info: object = {
-	type: 'GET',
-	description: 'Return an El Gato image modified, query parameters: x, y, deg'
-};
+
 export const GET = async ({ url }) => {
 	const gato =
 		'https://media.discordapp.net/attachments/949825336961564672/974389940114837554/C9A9BDC2-7696-4EAE-A3A2-5C7F408D61E1.jpg';
