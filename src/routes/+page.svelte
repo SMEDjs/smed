@@ -3,14 +3,15 @@
 	import Logo from '$lib/components/Logo.svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
-	const { id, createdAt, description, discordId, fileName, height, size, url, width } = data;
+	const { id, createdAt, description, discordId, fileName, height, size, width } = data;
 	import RelativeTime from '@yaireo/relative-time';
 	const relativeTime = new RelativeTime();
+	const url = `https://smed.wtf/api/cdn/${id}`;
 	const SEO = {
 		name: "SMED's CDN",
 		imgLink: `https://${id}.smed.wtf/`,
 		imgDescription: description ?? 'SMED Website / CDN',
-		description: `${width}x${height} - ${relativeTime.from(createdAt)}`,
+		description: `${width}x${height} - ${createdAt ? relativeTime.from(createdAt) : ''}`,
 		imgUrl: url ?? 'https://smed.wtf/favicon.png',
 		color: '#FFBB00',
 		keywords: 'smed,cdn,image,hosting'
@@ -32,7 +33,7 @@
 		content="width=device-width, initial-scale=0.5, maximum-scale=2.0, shrink-to-fit=no"
 	/>
 	<meta name="MobileOptimized" content="width" />
-	<link rel="icon" href="/assets/favicon.ico" />
+	<link rel="icon" href={SEO.imgUrl} />
 	<meta name="keywords" content={SEO.keywords} />
 	<meta name="description" content={SEO.description} />
 	<meta property="twitter:description" content={SEO.description} />
