@@ -1,11 +1,13 @@
 {
-  "Version": "14.0.0",
+  "Version": "15.0.0",
+  "Name": "SMED CDN",
   "DestinationType": "ImageUploader",
   "RequestMethod": "POST",
   "RequestURL": "https://smed.wtf/api/cdn/upload",
   "Body": "MultipartFormData",
   "Arguments": {
-    "description": "$input$"
+    "description": "{input}"
   },
-  "URL": "$json:url$",
+  "FileFormName": "image",
+  "URL": "{json:pageUrl}"
 }

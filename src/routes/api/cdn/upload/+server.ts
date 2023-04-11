@@ -8,9 +8,9 @@ import { WebhookClient } from 'discord.js';
 export const POST = (async ({ request }) => {
 	try {
 		const data = await request.formData();
-		const description = data.get('description')?.toString();
 		const image = data.get('image') as File;
-		if (!image || !description) throw error(500, 'No image or description');
+		const description = data.get('description') ? data.get('description') : image.name;
+		if (!image || !description) throw error(500, 'No image passed');
 		if (description.length > 100) throw error(500, 'Description too long');
 		const webhookClient = new WebhookClient({
 			id: '1095042485887176785',
@@ -20,7 +20,7 @@ export const POST = (async ({ request }) => {
 		const bufferArray = await image.arrayBuffer();
 		const webhook = await webhookClient.send({
 			content: image.name,
-			username: description,
+			username: 'uploader',
 			files: [
 				{
 					attachment: Buffer.from(bufferArray),
@@ -45,6 +45,7 @@ export const POST = (async ({ request }) => {
 			error: false,
 			message: `Uploaded successfully, you can view your image at https://${createdImg.id}.smed.wtf/`,
 			id,
+			pageUrl: `https://${createdImg.id}.smed.wtf/`,
 			url: imgUrl,
 			width,
 			height,
