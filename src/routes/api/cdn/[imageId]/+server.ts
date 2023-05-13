@@ -1,13 +1,12 @@
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { prisma } from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
 import Jimp from 'jimp';
 
 export const GET = (async ({ params }) => {
-	console.log(params);
 	try {
-		const id = Number(params.imageId);
-		if (isNaN(id)) throw error(404, 'Invalid image ID');
+		const id = params.imageId;
+		if (!id) throw error(404, 'Invalid image ID');
 		const image = await prisma.image.findUnique({
 			where: {
 				id

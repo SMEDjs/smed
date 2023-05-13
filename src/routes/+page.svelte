@@ -11,7 +11,7 @@
 		name: "SMED's CDN",
 		imgLink: `https://${id}.smed.wtf/`,
 		imgDescription: description ?? 'SMED Website / CDN',
-		description: `${width}x${height} - ${createdAt ? relativeTime.from(createdAt) : ''}`,
+		description: id ? `${width}x${height} - ${createdAt ? relativeTime.from(createdAt) : ''}` : "",
 		imgUrl: url ?? 'https://smed.wtf/favicon.png',
 		color: '#FFBB00',
 		keywords: 'smed,cdn,image,hosting'
@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-	<title>{description}</title>
+	<title>{SEO.name}</title>
 	<link type="application/json+oembed" href="/oembed.json" />
 	<meta property="og:site_name" content={SEO.name} />
 	<meta property="og:type" content="website" />

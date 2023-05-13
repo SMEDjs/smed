@@ -6,11 +6,10 @@ export const load: LayoutServerLoad = async ({ url }: { url: URL }) => {
 	const subdomain = url.hostname.split('.')?.[0];
 	if (!subdomain) return {};
 	try {
-		const id = Number(subdomain);
-		if (isNaN(id)) return {};
+		if (!subdomain) return {};
 		const image = await prisma.image.findUnique({
 			where: {
-				id
+				id: subdomain
 			}
 		});
 		if (!image) return {};

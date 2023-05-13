@@ -31,6 +31,7 @@ export const POST = (async ({ request }) => {
 		const { id, url, width, height, size } = webhook.attachments[0];
 		const createdImg = await prisma.image.create({
 			data: {
+				id: Math.random().toString(36).slice(-6),
 				discordId: id,
 				url,
 				width,

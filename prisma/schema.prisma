@@ -1,6 +1,7 @@
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 generator client {
@@ -8,7 +9,7 @@ generator client {
 }
 
 model Image {
-  id          Int       @id @default(autoincrement())
+  id          String    @id @unique
   discordId   String  
   url         String
   fileName    String
