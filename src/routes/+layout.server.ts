@@ -6,7 +6,8 @@ export const load: LayoutServerLoad = async ({ url }: { url: URL }) => {
 	const subdomain = url.hostname.split('.')?.[0];
 	if (!subdomain) return {};
 	try {
-		if (!subdomain) return {};
+		if (!subdomain || subdomain === "smed") return {};
+		console.log(subdomain)
 		const image = await prisma.image.findUnique({
 			where: {
 				id: subdomain
