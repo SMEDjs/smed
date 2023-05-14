@@ -4,7 +4,7 @@ import { error, json } from '@sveltejs/kit';
 import { prisma } from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
 import { WebhookClient } from 'discord.js';
-import * as Vibrant from 'node-vibrant'
+import Vibrant from 'node-vibrant';
 
 export const POST = (async ({ request }) => {
 	try {
