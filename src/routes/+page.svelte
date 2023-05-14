@@ -1,21 +1,28 @@
 <script lang="ts">
-	import { skills } from '$lib/smed.ts';
+	import { skills } from '$lib/smed';
+	import emojis from "$lib/emoji"
 	import Logo from '$lib/components/Logo.svelte';
 	import type { PageData } from './$types';
 	export let data: PageData;
-	const { id, createdAt, description, discordId, fileName, height, size, width } = data;
+	const { id, createdAt, description, discordId, fileName, height, size, width, mostColor} = data;
 	import RelativeTime from '@yaireo/relative-time';
 	const relativeTime = new RelativeTime();
 	const url = `https://smed.wtf/api/cdn/${id}`;
 	const SEO = {
 		name: "SMED's CDN",
 		imgLink: `https://${id}.smed.wtf/`,
-		imgDescription: description ?? 'SMED Website / CDN',
-		description: id ? `${width}x${height} - ${createdAt ? relativeTime.from(createdAt) : ''}` : "",
+		imgDescription: description ? `${emojis[Math.floor(Math.random() * emojis.length)]} - ${description}` : 'SMED Website / CDN',
+		description: id ? `${width}x${height} - ${createdAt ? relativeTime.from(createdAt) : ''} - ${formatBytes(size)} wasted` : "",
 		imgUrl: url ?? 'https://smed.wtf/favicon.png',
-		color: '#FFBB00',
+		color: mostColor ?? '#FFBB00',
 		keywords: 'smed,cdn,image,hosting'
 	};
+	function formatBytes(bytes: number): string {
+		const sizes: string[] = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+		if (bytes == 0) return '0 Bytes';
+		const i: number = Math.floor(Math.log(bytes) / Math.log(1024));
+		return parseFloat((bytes / Math.pow(1024, i)).toFixed(0)) + ' ' + sizes[i];
+	}
 </script>
 
 <svelte:head>

@@ -18,4 +18,5 @@ model Image {
   height      Int
   width       Int
   size        Int
+  mostColor   String?
 }

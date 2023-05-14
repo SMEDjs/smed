@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import { error } from '@sveltejs/kit';
 import { prisma } from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
@@ -13,6 +15,11 @@ export const GET = (async ({ params }) => {
 			}
 		});
 		const img = await Jimp.read(image.url);
+		const icon = await Jimp.read(process.env.ICON_URL ?? "");
+
+		const iconSize = Math.min(img.getWidth(), img.getHeight()) * 0.4;
+		icon.contain(iconSize, iconSize);
+		img.composite(icon, 0, img.getHeight() - icon.getHeight()) 
 
 		const imageBuffer = await img.getBufferAsync(Jimp.MIME_PNG);
 		const headers = new Headers({

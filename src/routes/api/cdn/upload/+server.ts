@@ -4,6 +4,7 @@ import { error, json } from '@sveltejs/kit';
 import { prisma } from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
 import { WebhookClient } from 'discord.js';
+import * as Vibrant from 'node-vibrant'
 
 export const POST = (async ({ request }) => {
 	try {
@@ -28,7 +29,9 @@ export const POST = (async ({ request }) => {
 				}
 			]
 		});
+		
 		const { id, url, width, height, size } = webhook.attachments[0];
+		const palette = await Vibrant.from(url).getPalette()
 		const createdImg = await prisma.image.create({
 			data: {
 				id: Math.random().toString(36).slice(-6),
@@ -38,7 +41,8 @@ export const POST = (async ({ request }) => {
 				size,
 				height,
 				description,
-				fileName: image.name
+				fileName: image.name,
+				mostColor: palette.Vibrant?.getHex()
 			}
 		});
 		const imgUrl = `https://smed.wtf/api/cdn/${createdImg.id}`;
