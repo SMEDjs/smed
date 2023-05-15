@@ -11,14 +11,13 @@
 	const url = `https://smed.wtf/api/cdn/${id}`;
 
 	const emoji = getEmojiFromColor(mostColor);
-	console.log(emoji);
 
 	const SEO = {
 		name: "SMED's CDN",
 		imgLink: `https://${id}.smed.wtf/`,
-		imgDescription: description ? `${emoji} - ${description}` : 'SMED Website / CDN',
+		imgDescription: description ? `${emoji ?? "🌈"} - ${description}` : 'SMED Website / CDN',
 		description: id ? `${width}x${height} - ${createdAt ? relativeTime.from(createdAt) : ''} - ${formatBytes(size)} wasted` : "",
-		imgUrl: url ?? 'https://smed.wtf/favicon.png',
+		imgUrl: id ? url : 'https://smed.wtf/favicon.png',
 		color: mostColor ?? '#FFBB00',
 		keywords: 'smed,cdn,image,hosting'
 	};

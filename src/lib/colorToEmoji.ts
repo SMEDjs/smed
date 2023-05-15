@@ -29,6 +29,7 @@ const emojis = {
 const array: number[] = []
 
 export function getEmojiFromColor(baseColor: string) {
+    if(!baseColor) return 
     Object.keys(emojis).forEach(color => {
         const n = getDiffColor(color, baseColor)
         array.push(n)
