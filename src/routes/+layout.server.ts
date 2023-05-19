@@ -13,6 +13,7 @@ export const load: LayoutServerLoad = async ({ url }: { url: URL }) => {
 			}
 		});
 		if (!image) return {};
+		console.log(image)
 		return image;
 	} catch (err) {
 		console.log(err);

@@ -29,7 +29,6 @@ export const POST = (async ({ request }) => {
 				}
 			]
 		});
-		
 		const { id, url, width, height, size } = webhook.attachments[0];
 		const palette = await Vibrant.from(url).getPalette()
 		const createdImg = await prisma.image.create({

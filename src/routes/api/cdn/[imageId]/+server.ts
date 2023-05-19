@@ -4,15 +4,14 @@ import { error } from '@sveltejs/kit';
 import { prisma } from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
 import Jimp from 'jimp';
-import gifwrap from "gifwrap"
 
 export const GET = (async ({ params }) => {
 	try {
-		const id = params.imageId;
-		if (!id) throw error(404, 'Invalid image ID');
+		const id = params.imageId.split(".").at(0)
+		if (!id) throw error(404, 'Invalid parameters');
 		const image = await prisma.image.findUnique({
 			where: {
-				id
+				id,
 			}
 		});
 		const response = await fetch(image.url);

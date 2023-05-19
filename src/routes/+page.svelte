@@ -8,7 +8,9 @@
 	const { id, createdAt, description, discordId, fileName, height, size, width, mostColor} = data;
 	import RelativeTime from '@yaireo/relative-time';
 	const relativeTime = new RelativeTime();
-	const url = `https://smed.wtf/api/cdn/${id}`;
+
+	const extension = fileName.split(".").at(-1)
+	const url = `https://smed.wtf/api/cdn/${id}${extension === "gif" ? ".gif" : ""}`;
 
 	const emoji = getEmojiFromColor(mostColor);
 
