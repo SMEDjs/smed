@@ -3,7 +3,7 @@ import type { LayoutServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
 
 export const load: LayoutServerLoad = async ({ url }: { url: URL }) => {
-	const subdomain = url.hostname.split('.')?.[0];
+	const subdomain = url.hostname?.split('.')?.[0];
 	if (!subdomain) return {};
 	try {
 		if (!subdomain || subdomain === "smed") return {};

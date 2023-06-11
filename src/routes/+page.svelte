@@ -9,7 +9,7 @@
 	import RelativeTime from '@yaireo/relative-time';
 	const relativeTime = new RelativeTime();
 
-	const extension = fileName.split(".").at(-1)
+	const extension = fileName?.split(".")?.at(-1)
 	const url = `https://smed.wtf/api/cdn/${id}${extension === "gif" ? ".gif" : ""}`;
 
 	const emoji = getEmojiFromColor(mostColor);
