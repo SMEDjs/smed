@@ -14,8 +14,8 @@ export const POST = (async ({ request }) => {
 		if (!image || !description) throw error(500, 'No image passed');
 		if (description.length > 100) throw error(500, 'Description too long');
 		const webhookClient = new WebhookClient({
-			id: '1095042485887176785',
-			token: process.env.TOKEN ?? ''
+			id: process.env.WEBHOOK_ID ?? '',
+			token: process.env.WEBHOOK_TOKEN ?? ''
 		});
 
 		const bufferArray = await image.arrayBuffer();
